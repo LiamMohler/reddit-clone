@@ -202,6 +202,7 @@ function PostCard({ post, user, onVote, onDelete }) {
           🔗 <a href={post.link} target="_blank" rel="noopener noreferrer">{post.link}</a>
         </p>
       )}
+      <p>Posted by: {post.postedBy}</p>
       <p>Score: {post.score ?? 0}</p>
       <p>Upvotes: {post.upvotes ?? 0}</p>
       <p>Downvotes: {post.downvotes ?? 0}</p>
