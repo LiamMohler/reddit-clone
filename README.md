@@ -9,7 +9,7 @@ A simple Reddit-style social app built with React and Firebase. Step 3 is option
 ### 1. **Clone the repository**
 
 ```bash
-git clone https://github.com/your-username/reddit-clone.git
+git clone https://github.com/LiamMohler/reddit-clone.git
 cd reddit-clone/reddit-clone
 ```
 
