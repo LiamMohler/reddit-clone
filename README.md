@@ -1,70 +1,90 @@
-# Getting Started with Create React App
+# Reddit Clone
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A simple Reddit-style social app built with React and Firebase. Step 3 is optional.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## Getting Started
 
-### `npm start`
+### 1. **Clone the repository**
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```bash
+git clone https://github.com/your-username/reddit-clone.git
+cd reddit-clone/reddit-clone
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 2. **Install dependencies**
 
-### `npm test`
+```bash
+npm install
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 3. **Set up Firebase** (Optional!!!!!, if you want to use the included Firebase project for testing, you can skip the above and just run the app)
 
-### `npm run build`
+**However, for your own app or production use, you should create your own Firebase project:**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Create a Firebase project at [Firebase Console](https://console.firebase.google.com/).
+- Enable **Authentication** (Email/Password).
+- Enable **Cloud Firestore**.
+- Copy your Firebase config and add it to a `.env` file in the root of `reddit-clone/reddit-clone`:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+  ```
+  REACT_APP_FIREBASE_API_KEY=your_api_key
+  REACT_APP_FIREBASE_AUTH_DOMAIN=your_auth_domain
+  REACT_APP_FIREBASE_PROJECT_ID=your_project_id
+  REACT_APP_FIREBASE_STORAGE_BUCKET=your_storage_bucket
+  REACT_APP_FIREBASE_MESSAGING_SENDER_ID=your_messaging_sender_id
+  REACT_APP_FIREBASE_APP_ID=your_app_id
+  ```
 
-### `npm run eject`
+- Set your Firestore rules to allow authenticated users:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+  ```js
+  rules_version = '2';
+  service cloud.firestore {
+    match /databases/{database}/documents {
+      match /{document=**} {
+        allow read, write: if request.auth != null;
+      }
+    }
+  }
+  ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 4. **Run the app**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```bash
+npm start
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Features
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- User registration and login (with random username#tag that can be updated and must be unique)
+- Session management and user authentication through firebase
+- Create, upvote, downvote, and delete posts (along with ordering based on score -> total upvotes -> newest)
+- Edit your username and tag (updates all your posts/comments)
+- Real-time updates for posts and comments
+- Secure authentication state across page reloads and browser sessions
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- To be added: Add comments to posts and work on design
 
-### Analyzing the Bundle Size
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Project Structure
 
-### Making a Progressive Web App
+- `src/components/` — React components (Navbar, PostForm, PostFeed, Auth, etc.)
+- `src/pages/` — Page components (Home)
+- `src/firebase.js` — Firebase config and initialization
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+---
 
-### Advanced Configuration
+## Scripts
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- `npm start` — Run the app in development mode
+- `npm run build` — Build for production
+- `npm test` — Run tests
