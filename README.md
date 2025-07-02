@@ -72,6 +72,9 @@ npm start
 
 
 - To be added: Add comments to posts and work on design
+- To be added: Change password
+- To be added: Delete user
+- To be added: Admin login/page (however posts can be deleted through the firebase already)
 
 ---
 
