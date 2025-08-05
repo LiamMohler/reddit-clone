@@ -1,6 +1,6 @@
 # Reddit Clone
 
-A simple Reddit-style social app built with React and Firebase. Step 3 is optional.
+A simple Reddit-style social app built with React and Firebase.
 
 ---
 
